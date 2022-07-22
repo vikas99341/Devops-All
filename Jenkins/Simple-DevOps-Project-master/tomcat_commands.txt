@@ -1,0 +1,72 @@
+At root home ? yum install java-1.8* ? wait for installation ? java –version ? go to download tar.gz (pgp, sha512) from https://tomcat.apache.org/download-80.cgi 
+Now cd /opt ? wget http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.46/bin/apache-tomcat-8.5.46.tar.gz ? ls 
+ tar -zvxf apache-tomcat-8.5.45.tar.gz to unzip the content ? cd the extracted file ? cd bin ? start the services ? ps –ef | grep tomcat 
+Here give +x permission to startup.sh and shutdown.sh 
+Then on /opt/apache-tomcat-8.5.45/bin say echo$PATH 
+Now ln –s /opt/apache-tomcat-8.5.45/bin/startup.sh /usr/local/bin/tomcatup and ln –s /opt/apache-tomcat-8.5.45/bin/shutdown.sh /usr/local/bin/tomcatdown
+
+Now from opt/apache-tomcat-8.5.45/bin    ? run tomcatup 
+
+Now cd .. ? cd conf ? vi server.xml ? edit connector port to 8090 ? save and come out ? stop the service tomcatdown and then start it gain 
+
+Change this port at EC2 –SG level also 
+
+Login works ? manage app 
+Read content ? look for command ? find  / -name context.xml
+Comment out valve class name by saying <!--     --> this is done at three files 
+
+Restart and try to connect again ? Manager app ? you should be prompted for user id ? to get user id ? vi tomcat-users.xml
+
+ <role rolename="manager-gui"/>
+  <role rolename="manager-script"/>
+  <role rolename="manager-jmx"/>
+  <role rolename="manager-status"/>
+  <user username="admin" password="admin" roles="manager-gui, manager-script, manager-jmx, manager-status"/>
+  <user username="deployer" password="deployer" roles="manager-script"/>
+  <user username="tomcat" password="s3cret" roles="manager-gui"/>
+
+
+yum install java-1.8*
+java –version
+cd /opt
+yum install wget
+wget http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.46/bin/apache-tomcat-8.5.46.tar.gz
+tar -zvxf apache-tomcat-8.5.46.tar.gz
+ls -l
+cd apache-tomcat-8.5.46
+cd bin
+chmod +x shutdown.sh
+chmod +x startup.sh
+cd /root
+vi .bash_profile
+echo $JAVA_HOME
+find /usr/lib/jvm/java-1.8* | head –n 3
+find  / -name javac
+vi .bash_profile
+source ~/.bash_profile
+echo $JAVA_HOME
+echo $PATH
+cd /opt/apache-tomcat-8.5.46/bin
+echo $PATH
+pwd
+ln -s /opt/apache-tomcat-8.5.46/bin/shutdown.sh /usr/bin/tomcatdown
+ln -s /opt/apache-tomcat-8.5.46/bin/startup.sh /usr/bin/tomcatup
+tomcatdown
+tomcatup
+ps –ef | grep tomcat
+cd ..
+cd conf
+vi server.xml
+tomcatdown
+tomcatup
+ps -ef | grep tomcat
+find  / -name context.xml
+vi /opt/apache-tomcat-8.5.46/webapps/host-manager/META-INF/context.xml
+vi /opt/apache-tomcat-8.5.46/webapps/manager/META-INF/context.xml
+vi tomcat-users.xml
+Install Deploy to container plugin in Jenkins 
+Draft credentials : Username with password : username and password is deployer  .rest comment .
+In post build action :  WAR/EAR File : **/*.war 
+Add container : Tomcat 8x :: use credentials and the url from tomcat web :http://<>:8090/ ?run the job in Jenkins ?  web app
+
+*/2 * * * * 

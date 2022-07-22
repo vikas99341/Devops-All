@@ -1,0 +1,13 @@
+Demo : Deployment
+Demo: Deamon set
+
+Rolling update and rollback
+scaling in k8s
+
+services
+persistent storage
+premitives of pvc
+secret and configmap
+headless service
+stateful sets
+Helm chart

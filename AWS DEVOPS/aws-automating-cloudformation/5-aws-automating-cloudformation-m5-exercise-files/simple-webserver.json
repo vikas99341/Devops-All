@@ -1,0 +1,131 @@
+{
+	"AWSTemplateFormatVersion": "2010-09-09",
+	"Description": "Simple Web Server",
+	"Mappings": {
+		"RegionAMI": {
+			"us-east-1": {"AmazonLinux": "ami-8fcee4e5", "Ubuntu": "ami-fce3c696"},
+			"eu-west-1": {"AmazonLinux": "ami-e1398992", "Ubuntu": "ami-f95ef58a"},
+			"ap-northeast-1": {"AmazonLinux": "ami-59bdb937", "Ubuntu": "ami-a21529cc"}
+		}
+	},
+	"Resources": {
+		"VPC": {
+			"Type": "AWS::EC2::VPC",
+			"Properties": {
+				"CidrBlock": "10.0.0.0/16"
+			}
+		},
+		"InternetGateway": {
+			"Type": "AWS::EC2::InternetGateway"
+		},
+		"VPCGatewayAttachment": {
+			"Type": "AWS::EC2::VPCGatewayAttachment",
+			"Properties": {
+				"VpcId": {"Ref": "VPC"},
+				"InternetGatewayId": {"Ref": "InternetGateway"}
+			}
+		},
+		"Subnet": {
+			"Type": "AWS::EC2::Subnet",
+			"Properties": {
+				"AvailabilityZone": {"Fn::Select": ["0", {"Fn::GetAZs": {"Ref": "AWS::Region"}}]},
+				"CidrBlock": {"Fn::Join": ["", ["10.0.0.0/24"]]},
+				"VpcId": {"Ref": "VPC"},
+				"MapPublicIpOnLaunch": "true"
+			}
+		},
+		"RouteTable": {
+			"Type": "AWS::EC2::RouteTable",
+			"Properties": {
+				"VpcId": {"Ref": "VPC"}
+			}
+		},
+		"RouteTableAssociation": {
+			"Type": "AWS::EC2::SubnetRouteTableAssociation",
+			"Properties": {
+				"SubnetId": {"Ref": "Subnet"},
+				"RouteTableId": {"Ref": "RouteTable"}
+			}
+		},
+		"Route": {
+			"Type": "AWS::EC2::Route",
+			"DependsOn": "VPCGatewayAttachment",
+			"Properties": {
+				"RouteTableId": {"Ref": "RouteTable"},
+				"DestinationCidrBlock": "0.0.0.0/0",
+				"GatewayId": {"Ref": "InternetGateway"}
+			}
+		},
+		"NetworkAcl": {
+			"Type": "AWS::EC2::NetworkAcl",
+			"Properties": {
+				"VpcId": {"Ref": "VPC"}
+			}
+		},
+		"SubnetNetworkAclAssociation": {
+			"Type": "AWS::EC2::SubnetNetworkAclAssociation",
+			"Properties": {
+				"SubnetId": {"Ref": "Subnet"},
+				"NetworkAclId": {"Ref": "NetworkAcl"}
+			}
+		},
+		"NetworkAclEntryIncoming": {
+			"Type": "AWS::EC2::NetworkAclEntry",
+			"Properties": {
+				"NetworkAclId": {"Ref": "NetworkAcl"},
+				"RuleNumber": "1",
+				"Protocol": "-1",
+				"RuleAction": "allow",
+				"Egress": "false",
+				"CidrBlock": "0.0.0.0/0"
+			}
+		},
+		"NetworkAclEntryOutgoing": {
+			"Type": "AWS::EC2::NetworkAclEntry",
+			"Properties": {
+				"NetworkAclId": {"Ref": "NetworkAcl"},
+				"RuleNumber": "1",
+				"Protocol": "-1",
+				"RuleAction": "allow",
+				"Egress": "true",
+				"CidrBlock": "0.0.0.0/0"
+			}
+		},
+		"SecurityGroup": {
+			"Type": "AWS::EC2::SecurityGroup",
+			"Properties": {
+				"GroupDescription": {"Ref": "AWS::StackName"},
+				"VpcId": {"Ref": "VPC"},
+				"SecurityGroupIngress": [{
+					"CidrIp": "0.0.0.0/0",
+					"FromPort": 80,
+					"IpProtocol": "tcp",
+					"ToPort": 80
+				}]
+			}
+		},
+		"EC2Instance": {
+			"Type": "AWS::EC2::Instance",
+			"DependsOn": "VPCGatewayAttachment",
+			"Properties": {
+				"ImageId": {"Fn::FindInMap": ["RegionAMI", {"Ref": "AWS::Region"}, "AmazonLinux"]},
+				"InstanceType": "t2.nano",
+				"SubnetId": {"Ref": "Subnet"},
+				"SecurityGroupIds": [{"Ref": "SecurityGroup"}],
+				"UserData": {"Fn::Base64": {"Fn::Join": ["\n", [
+					"#!/bin/bash -ex",
+					"yum install -y httpd",
+					"cd /var/www/html",
+					"echo '<html><body>Hello World!</body></html>' > index.html",
+					"service httpd start"
+				]]}}
+			}
+		}
+	},
+	"Outputs": {
+		"WebServerURL": {
+			"Description": "URL to Simple Web Server",
+			"Value": {"Fn::Join": ["", ["http://", {"Fn::GetAtt": ["EC2Instance", "PublicIp"]}]]}
+		}
+	}
+}

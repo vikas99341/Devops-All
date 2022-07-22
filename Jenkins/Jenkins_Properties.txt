@@ -1,0 +1,9 @@
+sonar.host.url=http://localhost:9000
+#----- Default source code encoding
+sonar.sourceEncoding=UTF-8
+
+sonar.projectKey=TomcatFromGit1
+sonar.projectName=Tomcat from Git
+sonar.projectVersion=1.0
+sonar.sourceEncoding=UTF-8
+sonar.java.binaries=C:\\Program Files (x86)\\Jenkins\\workspace\\samplejob1\\output

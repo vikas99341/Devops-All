@@ -1,0 +1,85 @@
+
+https://github.com/kumar99341/demo-chef-recipe.git
+
+We're going to start off by talking about some of the key concepts of OpsWorks and some of the components that are included with the service. We'll see a live example of actually going through and creating a stack and setting up layers and configuring instances, and then we'll talk about some key components for the exam like life cycle events and replacing failed instances with auto-healing.
+
+aws opsworks describe-stacks --region us-east-1 --query stack[].StackId 
+
+1. Continuous Delivery & Automation
+2. Monitoring,Metrics & Logging
+3. Security,Governance & validation 
+4. High Availibility & elasticity 
+
+Tools Used :
+===========
+Provisioning : Cloud formation ,EBS,OpsWorks 
+Declarative : Loosely coupled to implemenatation : Means you know the end result 
+Configuration : Chef,Puppet,SaltStack,Ansible,DSC 
+
+Learn about AWS CodeCommit :
+1. Download GIT from https://git-scm.com/download/win
+2. then aws.amazon/pwershell
+3. From console go to IAM user then attach policy --code commit access  
+4. In power shell use the following commands 
+	Set -AWSCredentials -Accesskey <   > SecretKey <  > StoreAS Codecommit 
+	cd '.\program Files (x86)\AWS Tools\CodeCommit'
+	ls 	
+	run .\git-credentials-ASSS4.exe -p codecommit
+	now our credentials are configured :: ::
+Steps to create a repository :
+===============================
+services ==> Developer Tools ==> codecommit ==> get started ==> Create a new repository ==> get the clone url 
+then come to power shell and type git clone < the cloned url > now cd .\MyRepo ==> here configure git by typing 
+git config user.email <'      '>  
+git config user.name <'      '> 
+create a new index.html by notepad index.html and then type the content 
+Commit to git bt using : git add index.html 
+check status  by ==> git status 
+git commit -m 'initial commit' ==> final commit 
+git push origin master 
+
+git commit -am 'updated index' 
+git log  ==> you get a commit id 
+use command == > git diff <commit id > 
+
+AWS CodeDeploy and codePipeline :
+=================================
+[Dev Machine (source file + App spec file )] ==> [version control repository (S3/Github)] ==> AWS code deploy/Code Pipeline ==> [EC2 Code deployment agent ] 	
+
+In Developers tool :
+look for Code code Deploy first and then Code Pipeline and configure then .
+
+Repository -- Git/S3
+Build      -- Jenkins
+Deployer   -- AWS Dode Deploy  
+
+Install visual studio community edition from visual studio.com then from https://aws.amazon.com/sdk-for-net 
+
+In MS visual studio file--> new --> project --> installed templates --> 
+
+Creating Stacks and Managing Configuration with OpsWorks :
+==========================================================
+OpsWorks is a Configuration management srrvice that allows you to run and operate services in AWS .You can configure your environment here which will have versions and will be maintainable . This uses chef ==> you can say its a managed chef type of service .you can model and mange the entie lifecycle from resource provisioning to application deployment ,s/w update ,monitoring and access control .Ops work is a tool which is geared towards IT Administrators and OPS-minded developers ,it a higher level tool which is less complex that cloud formation but more custimizable than Elastic Bean Stack 
+
+Here we talk about key concepts of AWS OpsWorks and the components inculded within the service .Also we see a live example of actually going through and creating a stack and setting up layers and configurating instances
+
+aws ec2 describe-regions --output table 
+A Chef cookbook is comprised of recipes that a nodes desired state.
+
+Suppose you want to change properties file of 1000 servers running at a time  ..
+
+CHEF TERMINOLOGY :
+==================
+workstations where your infrastructure is coded .
+Nodes: Nodes are the servers that are managed by Chef 
+Chef Server :provides a communication pathway between the workstations, and the nodes where the configurations are deployed by the Chef client .
+Bookshelf : To store cookbooks and related files and templates, the Chef server uses a Bookshelf that operates as a versioned repository .
+Recipes : are written in Ruby and contain information about everything that needs to be run, changed, or created on a node. Recipes work as a collection of resources that determine the configuration or policy of a node, with resources being a configuration element of the recipe. For a node to run a recipe, it must be on that node’s run list.
+A Chef cookbook is comprised of recipes that a nodes desired state.
+Cookbooks are the basis for managing the configurations on any node. Cookbooks contain values and information about the desired state of a node and then the Chef server and Chef client ensure that the defined state is achieved.Cookbooks contain recipes, attributes, custom resources, libraries, files, templates, tests, and metadata.
+
+aws ec2 describe-region --format tables 
+aws ec2 describe-regions --query Regions[].RegionName 
+aws ec2 describe-instances  
+
+

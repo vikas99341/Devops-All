@@ -1,0 +1,74 @@
+Job Interview: Senior Site Reliability Engineer
+
+Teamwork:
+=========
+Describe an experience in which your SRE team discussed and made a decision about whether to triage or conduct a root cause analysis. How did the team discuss the issue or issues, what hands-on role did you play, and what decision was made and why?
+
+Tell me about a time your team suggested a solution to a reliability or security issue. How was the issue first identified, what type of analysis took place, which team members did you give specific roles to and why, and what was the outcome?
+
+Describe an experience in which team members were conflicted over the best way or ways to, for example, meet capacity requirements. What type of meetings were held, how did you ensure that all team members had a voice, and how were conclusions reached?
+
+Tell me about a time your team worked on a key infrastructure automation process. How was this initially planned out and approved, how were timelines and duties specified, what issues arose among the team, and what was the outcome?
+
+Describe an experience in which you were tasked with engineering improved performance into a product or service. What was the product or service, how did the team and yourself assess its strengths, weaknesses and areas for improvement, and what was the outcome?
+
+Job Performance:
+================
+Tell me about a time you designed container-based architecture for a multitenant SaaS application. What was the project, how did you assess and plan tasks, what timelines were you working to, what issues did you experience, and what was the outcome?
+
+Describe an experience in which you diagnosed and fixed a series of issues in a distributed, containerized application. How and why did you conduct your initial diagnosis, what issues did you identify, how did you fix them, and what was the outcome?
+
+Tell me about a time you had the responsibility of driving large-scale multitenant clusters while ensuring optimal uptime. What was your project, how did you assess technical issues against requirements, and how did you go about ensuring optimal uptime?
+
+Describe an experience managing a large-scale, cloud-based infrastructure. How did you regularly assess the infrastructure from the “big picture” to the complex details, what scale was it, and what size was the team you worked with?
+
+Tell me about a time you played a key role in the development of a mission-critical system. What was the system, what was the scale, what was your position in the team, how did you go about assessing and planning your project, and what was the outcome?
+
+Intelligence & Capacity for Learning:
+=====================================
+
+Describe an experience which you feel best demonstrates your ability to diagnose technical issues, automate tasks, debug code, and your security-conscious approach. What was this project and why does it stand out in your mind?
+
+Describe an experience in which a key technical development or innovation happened, which had to be adapted to quickly. What was this, how did you absorb and adapt to it, and how did you support your company in adapting?
+
+Tell me about a time you had to use a new tool such as Terraform or Ansible, for example, to provision and configure cloud systems. How did you adapt to this new tool, what issues arose, if any, what did you learn, and what tools do you prefer today and why?
+
+Describe an experience during a key project in which you came to the conclusion that you needed to sharpen your skills in a specific area. What was this project, what was the area in which you felt you needed to improve, and what happened?
+
+Tell me about a time you were tasked with evolving systems with a view to processing new demands and scale. How did you go about assessing requirements, ensuring optimal reliability and performance, distributing tasks, and achieving positive outcomes?
+
+Time Management:
+================
+Describe an experience in which yourself and your SRE team had technical problems that threatened timelines. How early did you assess these issues, how did you plan and execute their resolution, and how did you perform other duties while this happened?
+
+Tell me about a time, if any, when responsibilities like automating operations, configuration, designing SaaS products, engineering performance and reliability into products and services, finding and fixing issues, etc., began to feel overwhelming. What did you do?
+
+Describe an experience in which problems with timelines led you to have to choose between, for example, securing a key infrastructure, and development on a greenfield project to replace an existing structure. How did you manage this issue and what was the outcome?
+
+Tell me about a time when various problems happened at the same time. For example, an influx of system errors and individual service level errors. How did you organize a response, analyse various types of issues, and resolve problems in a timely manner?
+
+Describe an experience in which you developed or chose a timeline methodology for yourself and your SRE team. Why did you feel the need to do this, how did you choose or develop your methodology, how did you implement it, and what was the outcome?
+
+Communication Skills:
+=====================
+Tell me about a time you had to create a report of a post-mortem on a production infrastructure incident. How did you assess, identify and fix the issues, how did you go about creating your report, and how did you express your report in a clear and understandable way?
+
+Describe an experience communicating issues or processes to professionals outside of your expertise. How did you express complex information and language in a way that could be easily understood, responded to, and ultimately drive solutions and productivity?
+
+Tell me about a time when your analysis and proposed solution for a complex issue, or series of issues, was met with some resistance by higher management. How did you combine your expertise with your communication skills to defend your conclusions? What happened?
+
+Describe an experience in which written reports or other correspondence caused confusion as it moved through related departments. How did you assess the issue, how did you rephrase or re-communicate the information, what did you learn, and what was the outcome?
+
+Tell me about a time you experienced communication issues in a meeting with a cross-functional team. How often were these meetings held, what was the set agenda during this meeting, if any, how did you resolve the issue, and what did you learn?
+
+Leadership:
+===========
+Describe an experience in which you were tasked with organizing and leading a team in the solution of a large scale organizational issue. What was the problem, how did you plan the solution, how did you distribute tasks, what hands-on role did you play, and what happened?
+
+Tell me about a time finger-pointing happened among team members during an incident post-mortem. How did you respond to this, who did you speak with, and what did you do to implement a blameless post-mortem culture? What was the outcome?
+
+Describe an experience in which you led the development of, or led improvements to, documentation covering, for example, service setup, release process, teardown, etc. What leadership role did you play and what were the results of your actions?
+
+Tell me about a time you implemented a disaster recovery testing project. What was the scale of this project, how many teams were involved, what conclusions were drawn, and how often did you run these testing projects?
+
+Describe an experience in which you developed, or contributed to, an operational playbook for the ongoing use and evolution of operational knowledge, principles, responses, etc. What part did you play and how valuable would you say a SRE team playbook is?

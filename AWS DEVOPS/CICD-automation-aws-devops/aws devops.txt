@@ -1,0 +1,24 @@
+Learning Objectives: In this module, you will get to know the nitty-gritty of AWS OpsWorks and learn how to create stacks and manage configuration with AWS OpsWorks. 
+
+Topics:
+Introduction to OpsWorks
+Components of OpsWorks
+Cookbooks, Recipes, Data bags and Berkshelf
+OpsWorks Lifecycle Events
+OpsWorks Deployment
+OpsWorks Auto-Healing
+Troubleshooting
+
+Hands-on:
+Deploy an application in OpsWorks Stack
+Integration of CloudFormation with OpsWorks
+
+Cloud adoption continues to rise .There are business desperate need of highly skilled professional that have proven track record of delivering results . The AWS Certified Devops Engineer certification has a reputation for being one of the most hard core AWS Certification available .You can take your skills to the next level and give your employer confidence that they are working with right professional .let you be a developer or an operations Engineer .
+
+We look into AWS code services like :
+1. AWS CodeDeploy 
+2. AWS CodePipeline 
+
+Cloud formation 
+
+https://github.com/mikepfeiffer --> Repositories --> aws-codedeploy-linux  

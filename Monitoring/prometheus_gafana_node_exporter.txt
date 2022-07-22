@@ -1,0 +1,17 @@
+https://github.com/prometheus/node_exporter/releases/download/v1.1.2/node_exporter-1.1.2.linux-amd64.tar.gz 
+
+https://github.com/prometheus/prometheus/releases/download/v2.26.0/prometheus-2.26.0.linux-amd64.tar.gz
+
+in prometheus --> prometheus.yml(edit add the linux pvt ip where node exporter is installed port 9100) --> sudo ./prometheus --> publicip:9090--> status --> target --> dashboard is not that great 
+
+
+Login to Gafana machine :
+------------------------
+https://grafana.com/docs/grafana/latest/installation/rpm/
+
+sudo nano /etc/yum.repos.d/grafana.repo
+follow the docs -- start 
+access it on : public-ip:3000
+
+https://grafana.com/grafana/dashboards/1860	
+ 

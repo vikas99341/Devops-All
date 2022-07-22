@@ -1,0 +1,271 @@
+﻿Welcome everyone on todays session on overview and demonstration of AWS OpsWorks.I am Vikas and i will clarify all your doubts related to OPs work .So without any further delay lets see agenda for todays session .
+Any body who can let the class know what is Ops work and where does it come from what will it do  ?
+OpsWorks is a DevOps application management solutions.Adenga walk through and then question :: Are we clear with the agenda ? Thanks for the confirmation guys ..
+So lets move to our first slide .
+When you're building an application you want to get new features added to your users fast.
+But having to manage all the infrastructure that your application needs and respond to changing conditions like spikes in traffic can be error-prone and hard to repeat if you're configuring everything manually. If you develop or manage complex applications you know it's not just code(where you take care of scalability and reliability ),but there are operational responsibilities( software provisioning ,deploying ,configureing ,monitoring ,scale,secure) too.
+As your application grows it routine operational tasks become more time consuming and error prone and obviosly you will not trade off control or flexibility  for ease of use . These tasks need to be predictable. It's a nightmare to diagnose operational problems in your live app.
+Now Frankly speaking I am lazy and i am not hard worker ,I am smart worker .So 
+
+Wouldn't it be nice if you have a friend who can automate operational tasks like software configuration, server scaling,deployments and database setup so that you can focus on developing instead of doing all that heavy lifting? So I look for a tool which is powerful and flexible enough to support a wide range of application architectures and that's easy to use.It should be able to configure and control any aspect of your application . 
+
+So AWS developed OpsWorks for us.
+
+And when it really comes down to the level of convenience and control you need.AWS has OpsWorks, which is a powerful end to end solution. It gives you an easy way to manage applications of nearly any skill and complexity without sacrificing control.
+It will help you in managing the complete application life cycle including resource provisioning, configuration management,application deployment, software updates, monitoring, and access control. OpsWorks is an application management service that helps you deploy and operate applications of all shapes and sizes.OpsWorks provides an easy way to quickly configure,deploy and update your applications. It even gives you tools to automate operationslike automatic instant scaling and health monitoring.You have a lot of flexibility in defining your applications architecture and other things like package installations, software configurationsand the resources your application needs such as storage, databases or load balancers. 
+
+OpsWorks is an integrated application management solution for ops minded developers and IT admins .This will help you to model ,control and automate application of any scale and complexity .It brings together all the tools you need to manage your application. Perhaps best of all, you only pay for the resources you use, OpsWorks itself is free.
+
+Why should you use OpsWorks?
+1. OpsWorks makes your life easier because it's simple - ANDROID
+2. productive - you get quality and reliablity while doing application configuration .
+3. flexible - It supports a wide variety of application architectures and any softwarethat has a scripted installation.
+4. It's powerful. With an event drive configuration system with support for customizable deployments, rollback, patch management, AutoScaling and more.
+5. And finally, it's secure.
+
+OpsWorks is one of the few ways you can deploy apps on AWS.
+I'll briefly introduce the other application management services and describe how OpsWorks is different.
+
+Elastic Beanstalk is an easy to use solution for building web apps and web services.If you want to upload your code and go and don't need to customize yourenvironment, Beanstalk may be for you.
+
+CloudFormation is a building block service that lets you provision and manage almost any AWS resource via domain specific language. It's powerful, but it requires you to author templates in a domain specific language and doesn't provide out of the box application functionality like deployments.
+
+What we're going to show you in the demonstration today is how to model the application in OpsWorks starting with a stack that contains all the resources we're going to use.
+
+With OpsWorks you model your entire application as a stack consisting of various layers.Next, we'll create a layer.
+Layers are like blueprints that define how to setup and configurea set of Amazon EC2 instances and related resources.
+OpsWorks includes pre-built layers for common components including Ruby, PHP, Node.js, Java, Amazon RDS, HAProxy, MySQL and Memcached.
+
+And also allows you to define your own layers for practically any technology and configure your layer however you wantusing chef recipes.
+After you define all the layers you need to run your application stack you just choose the operating system and the instance type to add.
+You can even scale the number of instances running by time of dayor average CPU load.
+Once your stock is up and running, OpsWorks will pull the code from your repositoryand deploy it on your instancesAnd you'll have a stack up and running based on the layers you defined earlier.
+Using OpsWorks to automate, deploy and manage you applications
+
+
+We'll create two layers, a PHP layer for our PHP app and a MySQL layer for our database.
+We'll then create some instances. Instances can be on all the time or they can scale based on load from your application.
+And finally, our application will be deployed onto those instances.
+Now, our application, like many, needs to connect to a database for persistence.
+How can we create and configure the database and then make sure our application connects to it?
+The old way would be we'd create the database table by hand
+and then bake the connection information into the code.
+This can be error prone because you could miss a step
+or later forget what you did when you need to recreate it
+We really want configuration information
+such as the database table creation, user creation,
+and all the metadata about the database
+to be managed like our source code,
+that way we can roll it back just like source code changes.
+And fortunately, Chef gives us a way to do this.
+OpsWorks triggers events during the application lifecycle
+such as when an instance is provisioned
+or an application is deployed.
+This lets you perform specific configuration tasks
+using Chef recipes that are attached to those events.
+Metadata is automatically generated by OpsWorks
+for such information as the instance is running in each layer
+in layer specific parameters.
+You can also specify metadata yourself that's passed into the recipes.
+Let's take a look at an example.
+We probably need to create a database table
+for all the information our app is going to generate.
+We could do it ourselves by hand,
+but we like to automate it and ensure repeatability,
+so we write a recipe.
+The recipe would be brittle if we hardcoded information
+like the username and database name,
+so we define those as metadata and pass it into the recipes.
+Chef takes the metadata and plugs it into the recipe.
+We can see, for example, in this metadata example,
+that database myphpapp is defined as root
+and it becomes your root in the command below.
+Okay, let's jump into the demonstrations.
+I'm going to go ahead and create my stack in OpsWorks,
+and we can see that each stack has a number of parameters
+such as default operating system, the region,
+default availability zone, and things like SSH key,
+and host name theme.
+We also can define custom cook books for our recipe.
+Now, I'm going to go ahead and use cook books
+that I've defined in my cook book repository.
+I'm going to go ahead and copy the repository information
+and paste it into my repository URL field here.
+OpsWorks supports a number of repository types
+including Git and Subversion as well as things
+like HTTP bundles and S3 bundles.
+I'll go ahead and create my stack.
+Now, the next thing to do is to create the two layers that I need.
+I need a layer for my PHP app,
+and this defines the instance's configuration
+for the PHP app server,
+as well as a layer for my MySQL database.
+Now, let's go ahead and start some instances here
+and then I'll tell you a little bit more about the layers.
+And I'll just start these instances
+in my default availability zone, although I could pick
+another availability zone as well.
+And I'll start all those instances.
+Now, let's look at the layers in a little bit more detail.
+So, I'll edit my PHP app server layer
+and we can see that OpsWorks includes a number
+of built-in Chef recipes.
+These recipes will configure the EC2 instances I create
+to include things like PHP, Apache web server,
+and a number of other things that help configure
+your application server for you.
+And then, of course, we want to be able
+to connect our PHP app to our database.
+And we've created a recipe that helps us do that.
+Let's go ahead and take a look at that recipe.
+And this basically passes in the parameters
+so that I can connect to the correct host
+with the username and password that I need
+and connect to the right table.
+So, we'll go ahead and put my recipe name right here
+and I'll add that.
+We can also see a couple other things that our layer can do.
+We can create EBS volumes that will be attached
+to all the instances that are created in this layer,
+even specifying things like RAID numbers
+and where you get those mounted.
+We could associate elastic IPs with each of your instances,
+we could even add additional OS packages
+when the instance is created and booted.
+So, we don't need any of these for this set of instances,
+so I'll go ahead and just click save.
+And now, let's go and take a look at our MySQL layer.
+We also have a recipe in our cook books for MySQL,
+and this takes care of setting up the database for us,
+it does the create table.
+So, we'll go ahead and attach that to our deploy event here.
+And what this does, is when OpsWorks gives a deploy event
+in our lifecycles, then it will execute the phpapp:dbsetup recipe.
+And here, we can see that we already have a volume
+that's going to be attached to the instances in my MySQL layer,
+which makes sense, I need a place to store my database data.
+And you can also see just a couple other things
+I didn’t mention before, such as the default security group
+that we have for this layer - all the instances in the layer,
+and you can create additional security groups
+and add those here as well.
+Auto healing is a nice feature that OpsWorks has
+that will allow you to restart instances in this layer
+in case of any instance failures.
+So, now that I've defined my layers and I'm starting up my instances,
+let's talk a little bit about the instances themselves.
+So, the instances that I've created are they type 24/7
+which means they're on all the time.
+I can also create instances that will start
+when I have certain load-based thresholds.
+So, for example, if I want to make sure
+that my app can handle the scale of information that's coming at it,
+then I can define additional instances to start
+when CPU thresholds are crossed,
+average memory thresholds are crossed, or average load.
+Some apps have regular load that comes at them
+based on time of day, and so you can also start time-bases instances.
+And these instances allow you to schedule the instance start and stop
+based on the time of the day, on certain days of the week,
+or every day.
+So, if I wanted an application to scale for a couple hours,
+then I could go ahead and start those instances
+just during those time windows.
+Okay, so now I've created the app server and the database server,
+but I still have to get my application onto it.
+And so, that's where the apps area comes in handy.
+So, I'll go ahead and add an app, and this is going to be my app,
+so I have a source code for it and I know that it's type PHP
+because that's the app server that I just created.
+And I have that - my app - configured in another repository
+on GitHub, and I'll go ahead and just copy that repo URL.
+I know I want to deploy it on the web document root,
+and I'll paste in my repo information.
+Now if this repo was private, then I could input my GitHub
+deploy SSH key, if it was a Subversion repo,
+then I could put in the username and password,
+I could but in some access keys if it was S3.
+All that's certainly possible.
+So, you can have public as well as private repos.
+And then I'm going to go ahead and put version two in here
+because I am using the version two branch for my application.
+And I'll go ahead and add this app.
+So, the next thing I'll want to do
+is I'll actually want to deploy the app.
+And when I deploy the app, it's going to take the apps code
+from my repository and it's going to go ahead
+and push it into the PHP app server.
+Okay, so we'll go ahead and click on the deploy button
+and we can see that we have a number of commands here.
+So, the standard command is to deploy,
+but we also have some other commands that we can run
+and OpsWorks will execute the recipes
+that will cause those events to happen.
+And you can see that OpsWorks, by default,
+is going to go ahead and deploy this PHP app
+to the PHP app server, but you can see that MySQL is also selected.
+That's because we're going to send a deploy event
+to the MySQL servers as well
+and we're going to run those deploy recipes that we configured before.
+So, we'll want to go ahead and let both of those servers
+get the deploy event.
+We can see that the deploy is actually happening
+and executing on those servers
+and before long we'll actually see some log files here
+which will give us a little bit more insight
+into the sorts of things that have been happening on those servers.
+Okay, so we can see that now there's a log for my MySQL
+and if we select it we can see all the information
+about what's happened as far as the deployment,
+the Chef recipes that were executed.
+And this is pretty handy for being able to
+take a look at any problems you might be having
+with deployments as you’re doing your test and debugging.
+And now that both deployments are finished,
+I can go ahead and click on my instance
+and let's take a look at the application.
+So, it looks like my application's come up
+and this is just a very basic application
+that allows us to put something into the database.
+So, we'll just put in, hello world, and add our name here.
+And if we go back, well, there we go.
+So, what did we do here?
+Well, we saw that we could create a stack
+which contains all the resources used
+for our particular application
+and my application consists of two layers:
+a PHP app server as well as a MySQL database.
+And those layers are interdependent,
+so I want to be able to configure my MySQL database
+with the table that I need,
+and then I want to be able to configure my app server and my app
+to be able to connect to that MySQL database.
+And I did that using Chef recipes.
+And then I deployed the actual MySQL app,
+of which I could have many, in this little apps area.
+Now, one thing I didn't mention is
+how do you actually connect to the individual EC2 instances
+in case you want to be able to perform some maintenance on them
+or take a look at configuration details on the instances.
+And in generally, typically what people do is
+they have an SSH key that's associated with each instance.
+OpsWorks gives you a little bit more flexibility.
+In the Permissions area, I can import IAM users
+and then I can give individual IAM users SSH
+or sudo access.
+And those IAM users can put their keys into the My Settings area.
+So, they can put their public key into the My Settings,
+and then they can connect directly to each instance
+that they've been given access to using their private key.
+So, just a little bit more control
+than giving each instance its own access key.
+Thank you very much for joining us today for this demonstration.
+If you would like a little bit more information including FAQs
+and links to forums and documentation, please visit us on the web
+at aws.amazon.com/opsworks.
+
+
+With OpsWorks you setup and configure whatever your application needs for each layer once and let OpsWorks automatically configureall instances launched into that layer.
+OpsWorks lets you focus on building amazing applications and services for your users without having to spend a lot of time manually configuring instances, software and databases.
+Automating your infrastructure gets your application to your users faster, helps you to manage scale and complexity and protects you applications from failure and downtimeand there's no additional charge for OpsWorks.You pay only for the AWS resources needed to store and run your applications.
+To get started automating your applications with AWS OpsWorks visit our website and you can launch your first stackwith a few clicks in the AWS Management Console.

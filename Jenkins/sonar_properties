@@ -1,0 +1,27 @@
+b80c451bdb13d8cd74a6c019a9fae2352dd08d2a
+
+Manage pugin -- > SonarQube scanner 
+Configure Systems -- >  Name + url + credentials 
+Global tool configuration : 
+
+https://github.com/vikas99341/spring-petclinic.git
+
+#Required Metadata
+ sonar.projectkey=simple-java-sonar
+ sonar.projectName=Simple java sonarQube Project
+ sonar.projectversion=1.0
+ 
+#Comma-seprated paths to directories with source (Required)
+ sonar.sources=src
+ 
+# Language 
+ sonar.language=java
+ 
+# Encoding of the source code 
+ sonar.sourceEncoding=UTF-8 
+ 
+ Publish Junit test result report:
+ 
+**/target/surefire-reports/*.xml
+
+i ahve afdded new content

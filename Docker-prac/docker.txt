@@ -1,0 +1,50 @@
+# Required Parameters
+sonar.project=DevOpsProject
+sonar.projectName=DevOpsProject
+sonar.projectVersion=1.0
+
+#Artifactory directory
+sonar.source=/var/lib/jenkins/workspace/$JOB_NAME//src
+
+
+sonar.projectKey=project12345
+sonar.projectName=project_test
+sonar.projectVersion=1.0
+sonar.login=admin
+sonar.password=admin
+sonar.exclusions=vendor/**, storage/**, resources/**
+sonar.language=php 
+sonar.sources=/var/lib/jenkins/workspace/$JOB_NAME
+sonar.sourceEncoding=UTF-8
+
+docker run -d --name vikas_demo -p 8090:8080 vikas_demo
+
+    1  yum install docker -y
+    2  service docker start
+    3  service docker status
+    4  useradd dockeradmin
+    5  passwd dockeradmin
+    6  usermod -aG docker dockeradmin
+    7  id
+    8  su dockeradmin
+    9  cd /opt
+   10  mkdir docker
+   11  cd docker
+   12  vi Dockerfile
+   13  vi /etc/ssh/sshd_config
+   14  service sshd restart
+   15  cd ..
+   16  cd ..
+   17  chown dockeradmin:dockeradmin /opt/docker
+   18  ls -ltr /opt/docker
+   19  chown -R dockeradmin:dockeradmin /opt/docker
+   20  ls -ltr /opt/docker
+   21  cd /opt/docker
+   22  ls
+   23  ls -l
+   24  docker images
+   25  docker ps
+   26  history
+
+
+docker stop vikas_demo ; docker rm -f vikas_demo ;docker image rm -f valaxy_demo

@@ -1,0 +1,39 @@
+1. Explain your understanding and expertise on both the software development side and the technical operations side of an organisation you’ve worked for in the past.
+
+2. Explain what would you check If a Linux-build-server suddenly starts getting slow.
+
+3. How would you make software deployable?
+
+4. How have you used SSH?
+
+5. What are the important aspects of a system of continuous integration and deployment?
+
+6. Describe Ansible master agent architecture. How have you implemented it in your project?
+
+7. What testing is necessary to ensure that a new service is ready for production?
+
+8. How DNS works? Explain what happens in all layers of OSI when URL is entered in the browser? How a system forks a child?
+
+9. Tell us about the CI tools that you are familiar with.
+
+10. What DevOp tools have you worked with?
+
+11. What different types of testing need to be carried out on a software system, and what tools would you use to achieve this testing?
+
+12. How much have you interacted with cloud-based software development?
+
+13. Discuss your experience building bridges between IT Ops, QA, and development.
+
+14. Are you familiar with just Linux or have you worked with Windows environments as well?
+
+15. Did you get a chance to work on Amazon tools?
+
+16. What are some DevOps projects you've worked on in the past 'using systems automation and configuration?
+
+17. What was your greatest achievement on a recent project?
+
+18. What problems did you face and how did you solve them?
+
+19. What’s your career objective in your role as a DevOps engineer?
+
+20. Explain the achievements and technology establishments achieved by you in your previous organization.

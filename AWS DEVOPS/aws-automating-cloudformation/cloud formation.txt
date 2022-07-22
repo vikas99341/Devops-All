@@ -1,0 +1,56 @@
+Challanges :
+1. Resolve dependency in right order .VPC ==> Subnet ==> SG ==> EC2 
+2. Update/delete existing infra structure based on dependency .During the implementation if one item fails it rolls back the entire stuff for you .
+3. Version control helps you to identify the changes 
+4. Reusable codes 
+
+CF gives you a JSON template where you define all needed AWS Resource and configure them ,Which in turn will transform your current state to target state .This gives you a stack(Instance of a template) making changes to existing resources .
+
+1 template = multiple stack .means same template can be used for multiple tasks .
+
+Automation is possible by using API .Automation lowers cost ,improve quality,Improve flexibility.
+
+Cloud formation Template :
+1.{"AWSTemplateFormatVersion": "2010-09-09",
+   "Description": "SSH Bastion Host ",
+   "Resource": {
+      "EC2Instance": {...},
+      "ElasticIP": {...},
+      "SecurityGroup": {...}
+      }}
+
+Install & configure CLI using https://aws.amazon.com/cli/
+                              https://aws.amazon.com/sdk-for-net/ ==> 
+
+visual studio community edition 
+================================
+File ==> new project ==> installed ==> AWS cloud formation template ==> take a empty template ==> 
+
+You get :
+1. Description 
+2. Parameters
+3. Resources contains 
+
+{"AWSTemplateFormatVersion": "2010-09-09",
+   "Description": "Single Instance ",
+   "Resource": {
+      "EC2Instance": {
+          "Type" : "AWS::EC2::Instance",
+          "Properties" : {
+		"ImageId" : "ami-08111162",
+		"InstanceType" : "t2.micro",
+		"SecurityGroups" : "mysg",
+		"KeyName"        : "virginia"
+		}
+      }
+    }
+}
+4. Outputs 
+ 
+Use CreationPolicy instead of wait time to wait for bootstrap scripts to pick up .
+condition resources and depends on  for conditional execution 
+
+Trouble shooting in Linux :
+Review log files from in/var/logs == > but befor that check roll back on fail as no from Console .
+
+For windows use ==> c:\cfn\log   

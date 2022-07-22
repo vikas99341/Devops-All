@@ -1,0 +1,65 @@
+sudo apt update -y 
+sudo apt-get install -y software-properties-common
+sudo apt-get install openjdk-11-jdk -y
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'
+wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O - | sudo apt-key add -
+sudo apt-get -y install postgresql postgresql-contrib
+sudo adduser sonar
+password: sonar123
+cd /opt
+go to https://www.sonarqube.org/downloads/
+sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.9.1.zip
+sudo apt install unzip
+sudo unzip sonarqube-7.9.1.zip
+sudo passwd postgres -- > postgres123
+su - postgres 
+at postgres home directory --> createuser sqube
+psql
+ALTER USER sqube WITH ENCRYPTED password 'sqube';
+CREATE DATABASE sonar OWNER sqube;
+\q
+exit --> back as ubuntu user 
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+sudo mkdir sonar
+cd sonar
+sudo chown -R sonar:sonar /opt/sonar
+sudo nano /opt/sonarqube/conf/sonar.properties
+sudo nano /opt/sonarqube/bin/linux-x86-64/sonar.sh
+sudo nano /opt/sonarqube/elasticsearch/config 
+sudo vi elasticsearch.yml
+sudo visudo
+# User privilege specification
+sonar    ALL=(ALL) NOPASSWD:ALL
+
+sudo mv sonarqube /opt/sonar
+su - sonar
+/opt/sonar/sonarqube/bin/linux-x86-64/sonar.sh start
+sudo netstat -plnt
+sudo sysctl -w vm.max_map_count=262144
+cat /opt/sonar/sonarqube/logs/sonar.log
+sudo ufw enable
+
+sudo apt-get install apache2 -y
+# sudo a2enmod proxy
+# sudo a2enmod proxy_http
+
+sudo nano /etc/apache2/sites-available/sonar.conf
+
+ProxyRequests Off
+ProxyPreserveHost On
+<VirtualHost *:80>
+    ServerName ec2-54-172-41-228.compute-1.amazonaws.com
+    ServerAdmin admin@example.com
+    ProxyPreserveHost On
+    ProxyPass / http://127.0.01:9000/
+    ProxyPassReverse / http://127.0.01:9000/
+    TransferLog /var/log/apache2/sonarm_access.log
+    ErrorLog /var/log/apache2/sonar_error.log
+</VirtualHost>
+
+# sudo a2ensite sonar
+# sudo systemctl restart apache2
+# sudo systemctl enable apache2
+
+https://www.alibabacloud.com/blog/easy-guide-to-install-sonarqube-on-ubuntu-16-04_593923
